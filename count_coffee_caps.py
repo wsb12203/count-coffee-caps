@@ -35,8 +35,12 @@ im = cv2.cvtColor(im, cv2.COLOR_GRAY2BGR)
 c = 0
 for cnt in cnts:
     x, y, w, h = cv2.boundingRect(cnt)
-    cv2.circle(img, (x+w//2, y+h//2), max(w, h)//2, (c, 150, 255-c), 3)
+    # cv2.circle(img, (x+w//2, y+h//2), max(w, h)//2, (0, 0, 255), 3)
+    
+    cv2.ellipse(img, (x+w//2, y+h//2), (max(w, h)//2,min(w, h)//2), 0, 0, 360, (0, 0, 255), 3)
+    # cv2.drawContours(img, [cnt], 0, (0,255,0), 3)
     c += 5
+
 cv2.imwrite(output_file, img)
 
 print(len(cnts))
